@@ -1,14 +1,14 @@
 package com.suli.suliapp.data.network;
 
 import com.google.gson.GsonBuilder;
-import com.upc.suli.data.models.AccessTokenResponse;
-import com.upc.suli.data.models.ProjectResponse;
-import com.upc.suli.data.models.post.request.CustodyChainRequest;
-import com.upc.suli.data.models.post.request.MeasurementValueRequest;
-import com.upc.suli.data.models.post.response.AgentResponse;
-import com.upc.suli.data.models.post.response.CustodyChainResponse;
-import com.upc.suli.data.models.post.response.InstrumentResponse;
-import com.upc.suli.data.models.post.response.MeasurementValueResponse;
+import com.suli.suliapp.data.models.AccessTokenResponse;
+import com.suli.suliapp.data.models.ProjectResponse;
+import com.suli.suliapp.data.models.post.request.CustodyChainRequest;
+import com.suli.suliapp.data.models.post.request.MeasurementValueRequest;
+import com.suli.suliapp.data.models.post.response.AgentResponse;
+import com.suli.suliapp.data.models.post.response.CustodyChainResponse;
+import com.suli.suliapp.data.models.post.response.InstrumentResponse;
+import com.suli.suliapp.data.models.post.response.MeasurementValueResponse;
 
 import java.util.List;
 
