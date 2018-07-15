@@ -21,11 +21,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.AddMeasurementActivity" />
         <activity android:name=".ui.AddCustodyChainActivity"
             android:label="Agregar Cadena de Custodia"
             />
         <activity android:name=".ui.ProjectsActivity"></activity>
+        <activity android:name=".ui.AddMeasurementActivity"
+            android:label="Agregar Evaluación"
+        />
     </application>
 
 </manifest>

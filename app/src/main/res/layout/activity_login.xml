@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:hint="Usuario"
-            android:text="msuarez"
+            android:text=""
             android:textColor="@color/login_text"
             android:textColorHint="@color/login_hint_text"
             android:textSize="20sp" />
@@ -32,7 +32,7 @@
             android:layout_marginBottom="16dp"
             android:hint="Contraseña"
             android:inputType="textPassword"
-            android:text="Evaluacion2018"
+            android:text=""
             android:textColor="@color/login_text"
             android:textColorHint="@color/login_hint_text" />
 

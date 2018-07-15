@@ -1,34 +1,40 @@
 package com.suli.suliapp.ui.utils;
 
 import android.content.Context;
+import android.net.Uri;
+import android.support.annotation.NonNull;
 
-import com.suli.suliapp.data.models.AccessTokenResponse;
-import com.suli.suliapp.data.models.ProjectResponse;
 import com.suli.suliapp.data.models.post.request.CustodyChainRequest;
 import com.suli.suliapp.data.models.post.request.MeasurementValueRequest;
 import com.suli.suliapp.data.models.post.response.AgentResponse;
 import com.suli.suliapp.data.models.post.response.CustodyChainResponse;
 import com.suli.suliapp.data.models.post.response.InstrumentResponse;
-import com.suli.suliapp.data.network.Network;
+import com.suli.suliapp.data.models.post.response.MeasurementValueResponse;
 import com.suli.suliapp.data.preferences.PreferencesManager;
 import com.suli.suliapp.ui.callbacks.GetAgentsCallback;
 import com.suli.suliapp.ui.callbacks.GetInstrumentsCallback;
 import com.suli.suliapp.ui.callbacks.GetProjectsCallback;
 import com.suli.suliapp.ui.callbacks.LoginCallback;
+import com.suli.suliapp.data.models.AccessTokenResponse;
+import com.suli.suliapp.data.models.ProjectResponse;
+import com.suli.suliapp.data.network.Network;
 import com.suli.suliapp.ui.callbacks.PostCustodyChainCallback;
 import com.suli.suliapp.ui.callbacks.PostMeasurementValueCallback;
 
+import java.io.File;
 import java.util.List;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class Utils {
+
     private Context context;
     private PreferencesManager preferencesManager;
-
 
     public Utils(Context context) {
         this.context = context;
@@ -157,9 +163,55 @@ public class Utils {
         });
     }
 
-    public void postMeasurementValue(final PostMeasurementValueCallback callback, MeasurementValueRequest request) {
+    public void postMeasurementValue(final PostMeasurementValueCallback callback, MeasurementValueRequest req, String path) {
+        File file = new File(path);
+        RequestBody fbody = RequestBody.create(MediaType.parse("image/*"), file);
+
+
+
         String authorization = "Bearer " + getAccessToken();
+        Network.getService().postMeasurementValue(authorization, create(""+req.custodyChain),
+                create(req.max),
+                create(req.min),
+                create(req.avg),
+                create(req.referencePoint),
+                create(req.observation),
+                create(req.typeLighting),
+                //fbody
+                prepareFilePart(path)
+        ).enqueue(new Callback<MeasurementValueResponse>() {
+            @Override
+            public void onResponse(Call<MeasurementValueResponse> call, Response<MeasurementValueResponse> response) {
+                if (response.isSuccessful()) {
+                    callback.onSuccess(response.body());
+                } else {
+                    callback.onFailure("Ocurrió un error, vuelva a intentarlo.");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MeasurementValueResponse> call, Throwable t) {
+                callback.onFailure(t.getMessage());
+            }
+        });
     }
 
 
+    private RequestBody create(String value){
+        return RequestBody.create(MediaType.parse("text/plain"), value);
+    }
+
+
+    @NonNull
+    private MultipartBody.Part prepareFilePart(String path) {
+        File file = new File(path);
+        RequestBody fbody = RequestBody.create(MediaType.parse("image/*"), file);
+        // MultipartBody.Part is used to send also the actual file name
+        return MultipartBody.Part.createFormData("images", file.getName(), fbody);
+    }
+
+
+
 }
+
+

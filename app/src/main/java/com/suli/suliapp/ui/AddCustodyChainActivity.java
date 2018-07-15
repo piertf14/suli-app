@@ -71,7 +71,7 @@ public class AddCustodyChainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_custody_chain);
-        etProject = findViewById(R.id.etProjet);
+        etProject = findViewById(R.id.etProject);
         etUnity = findViewById(R.id.etUnity);
         etJobPosition = findViewById(R.id.etJobPosition);
         etArea = findViewById(R.id.etArea);
@@ -249,10 +249,11 @@ public class AddCustodyChainActivity extends AppCompatActivity {
             utils.postCustodyChain(new PostCustodyChainCallback() {
                 @Override
                 public void onSuccess(CustodyChainResponse custodyChainResponse) {
+                    progressDialog.dismiss();
                     Intent intent = new Intent(AddCustodyChainActivity.this, AddMeasurementActivity.class);
                     intent.putExtra(AddMeasurementActivity.CUSTODY_CHAIN, custodyChainResponse);
                     startActivity(intent);
-                    progressDialog.dismiss();
+                    finish();
                 }
 
                 @Override

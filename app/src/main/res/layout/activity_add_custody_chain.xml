@@ -32,7 +32,7 @@
                 android:hint="Proyecto">
 
                 <EditText
-                    android:id="@+id/etProjet"
+                    android:id="@+id/etProject"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:editable="false" />
@@ -131,7 +131,7 @@
                 android:id="@+id/tilEndHour"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Hora de inicio">
+                android:hint="Hora de Fin   ">
 
                 <EditText
                     android:id="@+id/etEndHour"

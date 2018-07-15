@@ -5,66 +5,76 @@ import com.google.gson.annotations.SerializedName;
 public class MeasurementValueRequest {
 
     @SerializedName("chain_custody")
-    public Integer chainCustody;
+    public Integer custodyChain;
     @SerializedName("max")
-    public Integer max;
+    public String max;
     @SerializedName("min")
-    public Integer min;
+    public String min;
     @SerializedName("avg")
-    public Integer avg;
+    public String avg;
     @SerializedName("point_reference")
-    public String pointReference;
+    public String referencePoint;
     @SerializedName("observation_measurement")
-    public String observationMeasurement;
+    public String observation;
     @SerializedName("type_lighting")
     public String typeLighting;
 
-    public Integer getChainCustody() {
-        return chainCustody;
+    public MeasurementValueRequest(Integer custodyChain, String max, String min, String avg, String referencePoint, String observation, String typeLighting) {
+        this.custodyChain = custodyChain;
+        this.max = max;
+        this.min = min;
+        this.avg = avg;
+        this.referencePoint = referencePoint;
+        this.observation = observation;
+        this.typeLighting = typeLighting;
     }
 
-    public void setChainCustody(Integer chainCustody) {
-        this.chainCustody = chainCustody;
+    public Integer getCustodyChain() {
+        return custodyChain;
     }
 
-    public Integer getMax() {
+    public void setCustodyChain(Integer custodyChain) {
+        this.custodyChain = custodyChain;
+    }
+
+    public String getMax() {
         return max;
     }
 
-    public void setMax(Integer max) {
+    public void setMax(String max) {
         this.max = max;
     }
 
-    public Integer getMin() {
+    public String getMin() {
         return min;
     }
 
-    public void setMin(Integer min) {
+    public void setMin(String min) {
         this.min = min;
     }
 
-    public Integer getAvg() {
+    public String getAvg() {
         return avg;
     }
 
-    public void setAvg(Integer avg) {
+    public void setAvg(String avg) {
         this.avg = avg;
     }
 
-    public String getPointReference() {
-        return pointReference;
+    public String getReferencePoint() {
+        return referencePoint;
     }
 
-    public void setPointReference(String pointReference) {
-        this.pointReference = pointReference;
+    public void setReferencePoint(String referencePoint) {
+        this.referencePoint = referencePoint;
     }
 
-    public String getObservationMeasurement() {
-        return observationMeasurement;
+    public String getObservation() {
+        return observation;
     }
 
-    public void setObservationMeasurement(String observationMeasurement) {
-        this.observationMeasurement = observationMeasurement;
+    public void setObservation(String observation) {
+        this.observation = observation;
     }
 
     public String getTypeLighting() {
@@ -75,4 +85,3 @@ public class MeasurementValueRequest {
         this.typeLighting = typeLighting;
     }
 }
-
